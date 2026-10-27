@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#800080">
+    <meta name="description" content="Meet the clubs of Civitas League.">
+    <title>Civitas League — Football for everyone</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --purple: #800080;
+        --purple-dark: #58005b;
+        --blue: #0648b8;
+        --teal: #007b72;
+        --gold: #ffd43b;
+        --ink: #171322;
+        --muted: #716b7c;
+        --paper: #fbf9fc;
+        --surface: #fff;
+        --line: #e9e3ed;
+      }
+
+      [data-theme="dark"] {
+        color-scheme: dark;
+        --ink: #f2edf5;
+        --muted: #b6aebe;
+        --paper: #17131c;
+        --surface: #211b27;
+        --line: #39313f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 48px));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: relative;
+        z-index: 1;
+        border-bottom: 1px solid rgb(255 255 255 / 18%);
+        color: white;
+      }
+
+      .nav {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: .045em;
+      }
+
+      .brand-logo {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .nav-links a {
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        border: 1px solid rgb(255 255 255 / 32%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 9%);
+        opacity: .96;
+        transition: opacity .2s ease, background .2s ease, border-color .2s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        border-color: rgb(255 255 255 / 75%);
+        background: rgb(255 255 255 / 19%);
+        opacity: 1;
+      }
+
+      .nav-links a:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .theme-toggle {
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 0 11px;
+        border: 1px solid rgb(255 255 255 / 35%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 9%);
+        color: white;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background .2s ease, border-color .2s ease;
+      }
+
+      .theme-toggle:hover {
+        border-color: rgb(255 255 255 / 65%);
+        background: rgb(255 255 255 / 16%);
+      }
+
+      .theme-toggle:focus-visible {
+        outline: 2px solid white;
+        outline-offset: 3px;
+      }
+
+      .hero {
+        overflow: hidden;
+        position: relative;
+        color: white;
+        background: linear-gradient(118deg, var(--purple) 0%, #69008d 53%, var(--blue) 100%);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: -120px;
+        bottom: -315px;
+        width: 610px;
+        height: 610px;
+        border: 1px solid rgb(255 255 255 / 13%);
+        border-radius: 50%;
+        box-shadow: 0 0 0 42px rgb(255 255 255 / 4%), 0 0 0 88px rgb(255 255 255 / 3%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-layout {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .hero-content {
+        width: 100%;
+        max-width: 670px;
+        flex: 1 1 auto;
+        padding: 78px 0 91px;
+      }
+
+      .football-stage {
+        width: clamp(240px, 29vw, 330px);
+        flex: 0 0 auto;
+        perspective: 900px;
+      }
+
+      .football {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #e8e8e8;
+        object-fit: cover;
+        object-position: center 49%;
+        filter: drop-shadow(0 26px 30px rgb(15 5 35 / 32%));
+        animation: football-spin 20s linear infinite;
+        transform-style: preserve-3d;
+      }
+
+      @keyframes football-spin {
+        from {
+          transform: perspective(900px) rotateX(8deg) rotateZ(0deg);
+        }
+
+        to {
+          transform: perspective(900px) rotateX(8deg) rotateZ(360deg);
+        }
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 21px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 22px;
+        height: 2px;
+        background: var(--gold);
+        content: "";
+      }
+
+      h1 {
+        max-width: 650px;
+        margin: 0;
+        font-size: clamp(44px, 7vw, 78px);
+        font-weight: 800;
+        letter-spacing: -.065em;
+        line-height: .99;
+      }
+
+      h1 span {
+        color: var(--gold);
+      }
+
+      .hero-copy {
+        max-width: 445px;
+        margin: 22px 0 30px;
+        color: rgb(255 255 255 / 82%);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .button {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 0 20px;
+        border: 0;
+        border-radius: 5px;
+        background: var(--gold);
+        color: #20192a;
+        font-size: 13px;
+        font-weight: 800;
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgb(24 0 41 / 20%);
+      }
+
+      .button span {
+        font-size: 17px;
+      }
+
+      main {
+        padding: 70px 0 84px;
+      }
+
+      .season-banner {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 240px;
+        align-items: center;
+        gap: 30px;
+        min-height: 340px;
+        margin-bottom: 76px;
+        padding: 24px clamp(24px, 5vw, 56px);
+        border: 1px solid rgb(255 255 255 / 12%);
+        border-radius: 10px;
+        background:
+          radial-gradient(ellipse at 88% 50%, rgb(91 37 168 / 35%), transparent 48%),
+          linear-gradient(115deg, #101116, #1a1622 60%, #11141a);
+        color: white;
+      }
+
+      .season-banner::before {
+        position: absolute;
+        top: -130px;
+        right: 130px;
+        width: 360px;
+        height: 600px;
+        border: 1px solid rgb(255 255 255 / 8%);
+        border-radius: 50%;
+        content: "";
+        pointer-events: none;
+      }
+
+      .season-copy {
+        position: relative;
+        z-index: 1;
+      }
+
+      .season-copy .eyebrow {
+        margin-bottom: 14px;
+        color: var(--gold);
+      }
+
+      .season-copy h2 {
+        margin-bottom: 14px;
+        font-size: clamp(42px, 6vw, 68px);
+        letter-spacing: -.06em;
+      }
+
+      .season-copy p:not(.eyebrow) {
+        max-width: 390px;
+        margin: 0 0 24px;
+        color: rgb(255 255 255 / 78%);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .season-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .season-stats-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      .season-stats-link:hover {
+        color: var(--gold);
+      }
+
+      .season-artwork {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: 4px;
+        box-shadow: 0 18px 45px rgb(0 0 0 / 42%);
+      }
+
+      .about-section {
+        margin-bottom: 76px;
+        padding: clamp(24px, 5vw, 42px);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--teal);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      .about-section .eyebrow {
+        margin-bottom: 10px;
+        color: var(--teal);
+      }
+
+      .about-section h2 {
+        margin-bottom: 14px;
+      }
+
+      .about-copy {
+        max-width: 700px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 27px;
+      }
+
+      .section-heading .eyebrow {
+        margin-bottom: 10px;
+        color: var(--teal);
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(29px, 4vw, 40px);
+        letter-spacing: -.045em;
+        line-height: 1.1;
+      }
+
+      .section-note {
+        max-width: 290px;
+        margin: 0 0 3px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .club-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .club-card {
+        display: flex;
+        flex-direction: column;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      }
+
+      .club-card:hover {
+        transform: translateY(-4px);
+        border-color: #d3b9dd;
+        box-shadow: 0 12px 30px rgb(52 15 71 / 8%);
+      }
+
+      .club-profile {
+        display: block;
+        width: 100%;
+        height: 140px;
+        object-fit: contain;
+        filter: saturate(1.12) contrast(1.04) drop-shadow(0 5px 8px rgb(0 0 0 / 14%));
+      }
+
+      .club-card h3 {
+        margin: 18px 0 5px;
+        font-size: 17px;
+        letter-spacing: -.025em;
+      }
+
+      .club-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .club-action {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 15px;
+        padding: 0 11px;
+        border: 1px solid color-mix(in srgb, var(--teal), transparent 68%);
+        border-radius: 5px;
+        background: color-mix(in srgb, var(--teal), transparent 94%);
+        color: var(--teal);
+        font-size: 12px;
+        font-weight: 750;
+        text-decoration: none;
+        transition: background .2s ease, border-color .2s ease;
+      }
+
+      .club-action:hover {
+        border-color: var(--teal);
+        background: color-mix(in srgb, var(--teal), transparent 88%);
+      }
+
+      .club-action:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 3px;
+      }
+
+      .club-gallery {
+        margin-top: 64px;
+      }
+
+      .club-gallery .section-heading {
+        margin-bottom: 20px;
+      }
+
+      .gallery-period {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .gallery-coming-soon {
+        margin: 0;
+        padding: 22px;
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--surface), var(--teal) 3%);
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+        gap: 16px;
+      }
+
+      .gallery-card {
+        overflow: hidden;
+        margin: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 8px 24px rgb(52 15 71 / 6%);
+      }
+
+      .gallery-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .gallery-card figcaption {
+        padding: 14px 16px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        font-weight: 750;
+        line-height: 1.5;
+      }
+
+      .gallery-card figcaption span {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .bottom-band {
+        padding: 24px 0;
+        border-top: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .footer-brand {
+        color: var(--ink);
+        font-weight: 800;
+        letter-spacing: .035em;
+      }
+
+      .footer-social {
+        color: var(--teal);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--teal), transparent 60%);
+        text-underline-offset: 3px;
+      }
+
+      .footer-social:hover,
+      .footer-social:focus-visible {
+        text-decoration-color: currentColor;
+      }
+
+      .footer-social:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 3px;
+      }
+
+      .top-credit {
+        width: min(1120px, calc(100% - 48px));
+        margin: 0 auto;
+        padding-top: 7px;
+        color: rgb(255 255 255 / 62%);
+        font-size: 10px;
+        letter-spacing: .04em;
+        text-align: right;
+      }
+
+      @media (max-width: 960px) {
+        .hero-layout {
+          display: block;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 1;
+          max-width: 700px;
+        }
+
+        .football-stage {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          width: clamp(170px, 35vw, 250px);
+          opacity: .2;
+          transform: translateY(-42%);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .season-banner {
+          grid-template-columns: minmax(0, 1fr) 175px;
+          gap: 18px;
+          min-height: 270px;
+          margin-bottom: 54px;
+          padding: 22px;
+        }
+
+        .season-artwork {
+          max-height: 230px;
+        }
+
+        .club-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .section-note {
+          max-width: 430px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .shell {
+          width: min(100% - 36px, 1120px);
+        }
+
+        .nav {
+          min-height: 0;
+          flex-wrap: wrap;
+          gap: 8px;
+          padding: 8px 0 10px;
+        }
+
+        .brand {
+          gap: 8px;
+          font-size: 12px;
+        }
+
+        .brand-logo {
+          width: 42px;
+          height: 42px;
+        }
+
+        .nav-links {
+          order: 3;
+          width: 100%;
+          justify-content: center;
+          gap: 7px;
+          font-size: 11px;
+          white-space: nowrap;
+        }
+
+        .nav-links a {
+          min-height: 32px;
+          padding: 0 10px;
+        }
+
+        .nav-links a:last-child {
+          display: none;
+        }
+
+        .hero-content {
+          padding: 65px 0 74px;
+        }
+
+        .football-stage {
+          right: -10px;
+          width: 155px;
+          opacity: .14;
+        }
+
+        .hero-copy {
+          font-size: 15px;
+        }
+
+        main {
+          padding: 53px 0 62px;
+        }
+
+        .season-banner {
+          grid-template-columns: minmax(0, 1fr) 108px;
+          gap: 10px;
+          min-height: 0;
+          margin-bottom: 50px;
+          padding: 20px 14px;
+        }
+
+        .season-copy .eyebrow {
+          font-size: 9px;
+          letter-spacing: .1em;
+        }
+
+        .season-copy h2 {
+          margin-bottom: 9px;
+          font-size: 37px;
+        }
+
+        .season-copy p:not(.eyebrow) {
+          margin-bottom: 16px;
+          font-size: 12px;
+        }
+
+        .season-actions {
+          gap: 11px;
+        }
+
+        .season-copy .button {
+          min-height: 40px;
+          gap: 7px;
+          padding: 0 12px;
+          font-size: 11px;
+        }
+
+        .season-stats-link {
+          font-size: 11px;
+        }
+
+        .season-artwork {
+          max-height: 180px;
+        }
+
+        .club-grid {
+          gap: 11px;
+        }
+
+        .club-card {
+          padding: 17px;
+        }
+
+        .club-card h3 {
+          font-size: 15px;
+        }
+
+        .club-gallery {
+          margin-top: 48px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: .01ms !important;
+        }
+
+        .football {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero" id="home">
+      <div class="topbar">
+        <p class="top-credit">Developed by Maezastudios</p>
+        <nav class="nav shell" aria-label="Main navigation">
+          <a class="brand" href="#home" aria-label="Civitas League home">
+            <img class="brand-logo" src="assets/civitas-league-logo.png" alt="">
+            <span>CIVITAS LEAGUE</span>
+          </a>
+          <div class="nav-links">
+            <a href="#clubs">Clubs</a>
+            <a href="matches.html">Matches</a>
+            <a href="season-stats.html">Season Stats</a>
+            <a href="#about">About</a>
+          </div>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+            <span id="theme-icon" aria-hidden="true">☾</span>
+            <span id="theme-label">Dark</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="hero-inner shell">
+        <div class="hero-layout">
+          <div class="hero-content">
+            <p class="eyebrow">The beautiful game, together</p>
+            <h1>Welcome to<br><span>Civitas</span> League.</h1>
+            <p class="hero-copy">Four clubs. One league. A place for every supporter to belong. Meet the teams that make Civitas League.</p>
+            <a class="button" href="#clubs">Meet the clubs <span aria-hidden="true">↘</span></a>
+          </div>
+          <div class="football-stage" aria-hidden="true">
+            <img class="football" src="assets/football-photo-full.png" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="season-banner shell" aria-labelledby="season-title">
+        <div class="season-copy">
+          <p class="eyebrow">Civitas League</p>
+          <h2 id="season-title">Season 4</h2>
+          <p>Four clubs. One league. Open to everyone.</p>
+          <div class="season-actions">
+            <a class="button" href="#clubs">Meet the clubs <span aria-hidden="true">↘</span></a>
+            <a class="season-stats-link" href="season-stats.html">View season stats <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <img class="season-artwork" src="assets/season-4-poster.png" alt="Civitas League Season 4 artwork">
+      </section>
+
+      <section class="about-section shell" id="about" aria-labelledby="about-title">
+        <p class="eyebrow">About Civitas</p>
+        <h2 id="about-title">Get to know us better.</h2>
+        <p class="about-copy">Civitas League is a football league organized by the student representatives of Eco Socio Tech School TB Simatupang. The league is open to everyone, bringing people together through a shared love of the game.</p>
+      </section>
+
+      <section class="shell" id="clubs" aria-labelledby="clubs-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Our teams</p>
+            <h2 id="clubs-title">Four clubs. One league.</h2>
+          </div>
+          <p class="section-note">Get to know the clubs at the heart of Civitas League.</p>
+        </div>
+
+        <div class="club-grid">
+          <article class="club-card">
+            <img class="club-profile" src="assets/persihay-crest-hd.png" alt="Persihay team badge">
+            <h3>Persihay</h3>
+            <p>10 players</p>
+            <a class="club-action" href="players.html?team=persihay">View players <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="club-card">
+            <img class="club-profile" src="assets/gemelos-crest-hd.png" alt="Gemelos de Fuego team badge">
+            <h3>Gemelos de Fuego</h3>
+            <p>14 players</p>
+            <a class="club-action" href="players.html?team=gemelos">View players <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="club-card">
+            <img class="club-profile" src="assets/grande-celia-crest-hd.png" alt="Grande Celia team badge">
+            <h3>Grande Celia</h3>
+            <p>12 players</p>
+            <a class="club-action" href="players.html?team=grande-celia">View players <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="club-card">
+            <img class="club-profile" src="assets/un1ted-crest-hd.png" alt="Un1ted team badge">
+            <h3>Un1ted</h3>
+            <p>12 players</p>
+            <a class="club-action" href="players.html?team=un1ted">View players <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <section class="club-gallery" aria-labelledby="persihay-gallery-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Club gallery</p>
+              <h2 id="persihay-gallery-title">Persihay in focus.</h2>
+            </div>
+            <div>
+              <p class="section-note">Players and moments from Persihay.</p>
+              <p class="gallery-period">All-time highlights from past and present seasons</p>
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-card">
+              <img src="assets/persihay-mahesa.png" alt="Persihay poster featuring Mahesa Anabrang in the club kit" loading="lazy">
+              <figcaption>Mahesa Anabrang <span>Threefecta, Forward #17</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/persihay-adagio.png" alt="Persihay poster celebrating Adagio's debut goal" loading="lazy">
+              <figcaption>Adagio <span>Debut goal</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/persihay-andra-farewell.png" alt="Farewell poster for Andra, captain of FC Threefecta" loading="lazy">
+              <figcaption>Andra <span>With thanks for the memories</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="club-gallery" aria-labelledby="un1ted-gallery-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Club gallery</p>
+              <h2 id="un1ted-gallery-title">Un1ted in focus.</h2>
+            </div>
+            <div>
+              <p class="section-note">A closer look at the players and season highlights from Un1ted.</p>
+              <p class="gallery-period">All-time highlights from past and present seasons</p>
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-card">
+              <img src="assets/un1ted-robbie-owen-thomas.png" alt="Un1ted player poster celebrating Robbie Owen Thomas as Golden Boot of the Season" loading="lazy">
+              <figcaption>Robbie Owen Thomas <span>Golden Boot of the Season</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/un1ted-aesar-lunggana.png" alt="Un1ted player poster celebrating Aesar Lunggana as Playmaker of the Season" loading="lazy">
+              <figcaption>Aesar Lunggana <span>Playmaker of the Season</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/un1ted-herzian-prayata.png" alt="Un1ted player poster celebrating Herzian Pratyata as Keeper of the Season" loading="lazy">
+              <figcaption>Herzian Pratyata <span>Keeper of the Season</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/un1ted-eljee-zuri.png" alt="Un1ted player poster featuring Eljee Zuri as Playmaker of the Season" loading="lazy">
+              <figcaption>Eljee Zuri <span>Playmaker of the Season</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="club-gallery" aria-labelledby="gemelos-gallery-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Club gallery</p>
+              <h2 id="gemelos-gallery-title">Gemelos de Fuego in focus.</h2>
+            </div>
+            <div>
+              <p class="section-note">A look at the Gemelos de Fuego players.</p>
+              <p class="gallery-period">All-time highlights from past and present seasons</p>
+            </div>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-card">
+              <img src="assets/gemelos-de-fuego-gallery.png" alt="Gemelos de Fuego player poster featuring three players in blue kits" loading="lazy">
+              <figcaption>Gemelos de Fuego <span>Club gallery</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/gemelos-player-portrait-1.png" alt="Gemelos de Fuego player wearing the club's blue and black kit" loading="lazy">
+              <figcaption>Gemelos de Fuego <span>Club portrait</span></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="assets/gemelos-player-portrait-2.png" alt="Gemelos de Fuego player holding up the club's blue and black kit" loading="lazy">
+              <figcaption>Gemelos de Fuego <span>Club portrait</span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="club-gallery" aria-labelledby="grande-gallery-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Club gallery</p>
+              <h2 id="grande-gallery-title">Grande Celia in focus.</h2>
+            </div>
+            <div>
+              <p class="section-note">More from Grande Celia is on the way.</p>
+              <p class="gallery-period">All-time club gallery</p>
+            </div>
+          </div>
+          <p class="gallery-coming-soon">Stay tuned!</p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="bottom-band">
+      <div class="footer-inner shell">
+        <span class="footer-brand">CIVITAS LEAGUE</span>
+        <span>Football brings us together.</span>
+        <a class="footer-social" href="https://www.instagram.com/civitasleaguee?utm_source=ig_web_button_share_sheet&amp;rpxt=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">Follow us on Instagram</a>
+      </div>
+    </footer>
+    <script>
+      const themeButton = document.querySelector("#theme-toggle");
+      const themeIcon = document.querySelector("#theme-icon");
+      const themeLabel = document.querySelector("#theme-label");
+
+      function setTheme(theme) {
+        const isDark = theme === "dark";
+        document.documentElement.dataset.theme = theme;
+        themeButton.setAttribute("aria-pressed", String(isDark));
+        themeButton.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} theme`);
+        themeIcon.textContent = isDark ? "☀" : "☾";
+        themeLabel.textContent = isDark ? "Light" : "Dark";
+        localStorage.setItem("civitas-theme", theme);
+      }
+
+      const savedTheme = localStorage.getItem("civitas-theme");
+      if (savedTheme === "dark" || savedTheme === "light") {
+        setTheme(savedTheme);
+      }
+      themeButton.addEventListener("click", () => {
+        setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+      });
+    </script>
+  </body>
+</html>

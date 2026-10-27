@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#800080">
+    <meta name="description" content="Meet the players of Civitas League.">
+    <title>Team players — Civitas League</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --purple: #800080;
+        --blue: #0648b8;
+        --teal: #007b72;
+        --gold: #ffd43b;
+        --ink: #171322;
+        --muted: #716b7c;
+        --paper: #fbf9fc;
+        --surface: #fff;
+        --line: #e9e3ed;
+      }
+
+      [data-theme="dark"] {
+        color-scheme: dark;
+        --ink: #f2edf5;
+        --muted: #b6aebe;
+        --paper: #17131c;
+        --surface: #211b27;
+        --line: #39313f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(920px, calc(100% - 40px));
+        margin-inline: auto;
+      }
+
+      .hero {
+        color: white;
+        background: linear-gradient(118deg, var(--purple) 0%, #69008d 53%, var(--blue) 100%);
+      }
+
+      .topbar {
+        border-bottom: 1px solid rgb(255 255 255 / 18%);
+      }
+
+      .nav {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: .045em;
+      }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .theme-toggle {
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 0 11px;
+        border: 1px solid rgb(255 255 255 / 35%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 9%);
+        color: white;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .theme-toggle:focus-visible,
+      .back-link:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .hero-copy {
+        padding: 48px 0 56px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(36px, 6vw, 58px);
+        letter-spacing: -.055em;
+        line-height: 1;
+      }
+
+      .team-line {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 20px;
+        color: rgb(255 255 255 / 82%);
+        font-size: 14px;
+      }
+
+      .team-line img {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+      }
+
+      main {
+        padding: 38px 0 72px;
+      }
+
+      .roster-panel {
+        padding: clamp(20px, 4vw, 34px);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+      }
+
+      .roster-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: -.035em;
+      }
+
+      .player-count {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .player-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .player-list li {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .player-list li::before {
+        width: 7px;
+        height: 7px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--teal);
+        content: "";
+      }
+
+      .back-link {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+        padding: 0 16px;
+        border: 1px solid var(--teal);
+        border-radius: 6px;
+        background: var(--teal);
+        color: white;
+        font-size: 14px;
+        font-weight: 750;
+        box-shadow: 0 4px 12px rgb(0 123 114 / 18%);
+        transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+      }
+
+      .back-link:hover {
+        transform: translateY(-1px);
+        background: color-mix(in srgb, var(--teal), black 12%);
+        box-shadow: 0 6px 16px rgb(0 123 114 / 25%);
+      }
+
+      .back-link:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .error-message {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--muted);
+      }
+
+      @media (max-width: 520px) {
+        .shell {
+          width: min(100% - 32px, 920px);
+        }
+
+        .player-list {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy {
+          padding: 38px 0 44px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="topbar">
+        <nav class="nav shell" aria-label="Main navigation">
+          <a class="brand" href="index.html#home" aria-label="Civitas League home">
+            <img class="brand-logo" src="assets/civitas-league-logo.png" alt="">
+            <span>CIVITAS LEAGUE</span>
+          </a>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+            <span id="theme-icon" aria-hidden="true">☾</span>
+            <span id="theme-label">Dark</span>
+          </button>
+        </nav>
+      </div>
+      <div class="hero-copy shell">
+        <p class="eyebrow">Meet the squad</p>
+        <h1 id="team-name">Team players</h1>
+        <div class="team-line" id="team-line" hidden>
+          <img id="team-badge" alt="">
+          <span>Civitas League club roster</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="roster-panel" id="roster-panel" aria-labelledby="roster-title" hidden>
+        <div class="roster-heading">
+          <h2 id="roster-title">Players</h2>
+          <span class="player-count" id="player-count"></span>
+        </div>
+        <ul class="player-list" id="player-list"></ul>
+      </section>
+      <p class="error-message" id="error-message" role="status" hidden></p>
+      <a class="back-link" href="index.html#clubs"><span aria-hidden="true">←</span> Back to all clubs</a>
+    </main>
+
+    <script>
+      const teams = {
+        persihay: {
+          name: "Persihay",
+          badge: "assets/persihay-crest-hd.png",
+          players: ["Arsa", "Angga", "Ahza", "Nathan Rusdi", "Mahesa", "Mr James", "Gio", "Abi", "Keyan", "Darrend"]
+        },
+        gemelos: {
+          name: "Gemelos de Fuego",
+          badge: "assets/gemelos-crest-hd.png",
+          players: ["Gavin", "Kellan", "Kafka", "Fathan", "Rakka", "Nathan", "Darryl", "Raya", "Nuada", "Arkaia", "Ben", "Kara", "Keenan Pical", "Khiar"]
+        },
+        "grande-celia": {
+          name: "Grande Celia",
+          badge: "assets/grande-celia-crest-hd.png",
+          players: ["Mr Tri", "Bagas", "Theo", "Reivano", "Sena", "El", "Ken", "Alen", "Mikaiil", "Panji", "Ian", "Moses"]
+        },
+        un1ted: {
+          name: "Un1ted",
+          badge: "assets/un1ted-crest-hd.png",
+          players: ["Eijee", "Adi", "Herzian", "Devan", "Heru", "Enzo", "Ganen", "Aesar", "Robbie", "Davin", "Hartley", "Atria"]
+        }
+      };
+
+      const team = teams[new URLSearchParams(window.location.search).get("team")];
+      const rosterPanel = document.querySelector("#roster-panel");
+      const errorMessage = document.querySelector("#error-message");
+
+      if (team) {
+        document.title = `${team.name} players — Civitas League`;
+        document.querySelector("#team-name").textContent = team.name;
+        document.querySelector("#roster-title").textContent = `${team.name} players`;
+        document.querySelector("#team-badge").src = team.badge;
+        document.querySelector("#team-badge").alt = `${team.name} badge`;
+        document.querySelector("#team-line").hidden = false;
+        document.querySelector("#player-count").textContent = `${team.players.length} players`;
+        const playerList = document.querySelector("#player-list");
+        for (const player of team.players) {
+          const item = document.createElement("li");
+          item.textContent = player;
+          playerList.append(item);
+        }
+        rosterPanel.hidden = false;
+      } else {
+        document.title = "Team not found — Civitas League";
+        document.querySelector("#team-name").textContent = "Team not found";
+        errorMessage.textContent = "We couldn't find that team. Return to the clubs page and choose a team to view its players.";
+        errorMessage.hidden = false;
+      }
+
+      const themeButton = document.querySelector("#theme-toggle");
+      const themeIcon = document.querySelector("#theme-icon");
+      const themeLabel = document.querySelector("#theme-label");
+
+      function setTheme(theme) {
+        const isDark = theme === "dark";
+        document.documentElement.dataset.theme = theme;
+        themeButton.setAttribute("aria-pressed", String(isDark));
+        themeButton.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} theme`);
+        themeIcon.textContent = isDark ? "☀" : "☾";
+        themeLabel.textContent = isDark ? "Light" : "Dark";
+        localStorage.setItem("civitas-theme", theme);
+      }
+
+      const savedTheme = localStorage.getItem("civitas-theme");
+      if (savedTheme === "dark" || savedTheme === "light") {
+        setTheme(savedTheme);
+      }
+      themeButton.addEventListener("click", () => {
+        setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+      });
+    </script>
+  </body>
+</html>
