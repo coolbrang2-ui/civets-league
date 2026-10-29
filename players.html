@@ -203,6 +203,134 @@
         content: "";
       }
 
+      .player-button {
+        width: 100%;
+        min-width: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .player-button::after {
+        color: var(--muted);
+        content: "View stats";
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+
+      .player-button:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 5px;
+        border-radius: 3px;
+      }
+
+      .player-dialog {
+        width: min(430px, calc(100% - 32px));
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--ink);
+        box-shadow: 0 24px 70px rgb(23 19 34 / 28%);
+      }
+
+      .player-dialog::backdrop {
+        background: rgb(23 19 34 / 58%);
+        backdrop-filter: blur(4px);
+      }
+
+      .dialog-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 22px 22px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .dialog-header h2 {
+        font-size: 21px;
+      }
+
+      .dialog-season {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .dialog-position {
+        margin: 5px 0 0;
+        color: var(--teal);
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .dialog-close {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--surface);
+        color: var(--ink);
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .dialog-close:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 2px;
+      }
+
+      .player-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0;
+        padding: 20px 22px 24px;
+      }
+
+      .player-stat {
+        min-width: 0;
+        padding: 0 12px;
+        border-left: 1px solid var(--line);
+        text-align: center;
+      }
+
+      .player-stat:first-child {
+        border-left: 0;
+      }
+
+      .player-stat dt {
+        margin-bottom: 7px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .player-stat dd {
+        margin: 0;
+        color: var(--purple);
+        font-size: 28px;
+        font-weight: 850;
+      }
+
+      [data-theme="dark"] .player-stat dd {
+        color: #e68be6;
+      }
+
       .back-link {
         min-height: 46px;
         display: inline-flex;
@@ -295,7 +423,7 @@
         persihay: {
           name: "Persihay",
           badge: "assets/persihay-crest-hd.png",
-          players: ["Arsa", "Angga", "Ahza", "Nathan Rusdi", "Mahesa", "Mr James", "Gio", "Abi", "Keyan", "Darrend"]
+          players: ["Arsa", "Angga", "Ahza", "Nathan Rusdi", "Mahesa", "Mr James", "Gio", "Abi", "Keyan", "Darrend", "Gibral"]
         },
         gemelos: {
           name: "Gemelos de Fuego",
@@ -308,10 +436,26 @@
           players: ["Mr Tri", "Bagas", "Theo", "Reivano", "Sena", "El", "Ken", "Alen", "Mikaiil", "Panji", "Ian", "Moses"]
         },
         un1ted: {
-          name: "Un1ted",
+          name: "UNIT1D",
           badge: "assets/un1ted-crest-hd.png",
-          players: ["Eijee", "Adi", "Herzian", "Devan", "Heru", "Enzo", "Ganen", "Aesar", "Robbie", "Davin", "Hartley", "Atria"]
+          players: ["Eijee", "Adi", "Herzian", "Devan", "Heru", "Enzo", "Ganen", "Aesar", "Robbie", "Davin", "Hartley", "Atria", "Aqeel"]
         }
+      };
+
+      const playerStats = {
+        Gibral: { displayName: "Gibral", goals: 9, assists: 3, games: 4, position: "Attacker", ovr: 94 },
+        Eijee: { displayName: "Eijee (Zuri)", goals: 3, assists: 4, games: 6, position: "Midfielder/Defender" },
+        Robbie: { displayName: "Robbie", goals: 5, assists: 1, games: 4, position: "Attacker" },
+        Adi: { displayName: "Adi (Hasnur)", goals: 7, assists: 2, games: 6, position: "Attacker/Midfielder" },
+        Hartley: { displayName: "Hartley (Laurentius)", goals: 6, assists: 5, games: 6, position: "Attacker" },
+        Heru: { displayName: "Heru (Hartono)", goals: 2, assists: 0, games: 2, position: "Attacker" },
+        Devan: { displayName: "Devan", goals: 0, assists: 0, games: 2, position: "Defender" },
+        Ganen: { displayName: "Ganen (Rasjidi)", goals: 2, assists: 1, games: 6, position: "Midfielder" },
+        Davin: { displayName: "Davin", goals: 0, assists: 0, games: 0, position: "Defender" },
+        Aesar: { displayName: "Aesar (Lunggana)", goals: 1, assists: 2, games: 4, position: "Midfielder/Defender" },
+        Aqeel: { displayName: "Aqeel", goals: 0, assists: 0, games: 2, position: "Attacker" },
+        Herzian: { displayName: "Herzian", saves: 0, games: 0, position: "Goalkeeper" },
+        Enzo: { displayName: "Enzo", saves: 4, games: 2, position: "Goalkeeper" }
       };
 
       const team = teams[new URLSearchParams(window.location.search).get("team")];
@@ -329,7 +473,18 @@
         const playerList = document.querySelector("#player-list");
         for (const player of team.players) {
           const item = document.createElement("li");
-          item.textContent = player;
+          const stats = playerStats[player] || null;
+
+          if (stats) {
+            const link = document.createElement("a");
+            link.className = "player-button";
+            link.href = `player-stats.html?player=${encodeURIComponent(player.toLowerCase())}`;
+            link.textContent = player;
+            link.setAttribute("aria-label", `View Season 4 stats for ${stats.displayName}`);
+            item.append(link);
+          } else {
+            item.textContent = player;
+          }
           playerList.append(item);
         }
         rosterPanel.hidden = false;
@@ -355,9 +510,7 @@
       }
 
       const savedTheme = localStorage.getItem("civitas-theme");
-      if (savedTheme === "dark" || savedTheme === "light") {
-        setTheme(savedTheme);
-      }
+      setTheme(savedTheme === "light" ? "light" : "dark");
       themeButton.addEventListener("click", () => {
         setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
       });

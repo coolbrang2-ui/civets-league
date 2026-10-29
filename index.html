@@ -873,7 +873,7 @@
           <article class="club-card">
             <img class="club-profile" src="assets/persihay-crest-hd.png" alt="Persihay team badge">
             <h3>Persihay</h3>
-            <p>10 players</p>
+            <p>11 players</p>
             <a class="club-action" href="players.html?team=persihay">View players <span aria-hidden="true">→</span></a>
           </article>
           <article class="club-card">
@@ -889,8 +889,8 @@
             <a class="club-action" href="players.html?team=grande-celia">View players <span aria-hidden="true">→</span></a>
           </article>
           <article class="club-card">
-            <img class="club-profile" src="assets/un1ted-crest-hd.png" alt="Un1ted team badge">
-            <h3>Un1ted</h3>
+            <img class="club-profile" src="assets/un1ted-crest-hd.png" alt="UNIT1D team badge">
+            <h3>UNIT1D</h3>
             <p>12 players</p>
             <a class="club-action" href="players.html?team=un1ted">View players <span aria-hidden="true">→</span></a>
           </article>
@@ -927,28 +927,28 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">Club gallery</p>
-              <h2 id="un1ted-gallery-title">Un1ted in focus.</h2>
+              <h2 id="un1ted-gallery-title">UNIT1D in focus.</h2>
             </div>
             <div>
-              <p class="section-note">A closer look at the players and season highlights from Un1ted.</p>
+              <p class="section-note">A closer look at the players and season highlights from UNIT1D.</p>
               <p class="gallery-period">All-time highlights from past and present seasons</p>
             </div>
           </div>
           <div class="gallery-grid">
             <figure class="gallery-card">
-              <img src="assets/un1ted-robbie-owen-thomas.png" alt="Un1ted player poster celebrating Robbie Owen Thomas as Golden Boot of the Season" loading="lazy">
+              <img src="assets/un1ted-robbie-owen-thomas.png" alt="UNIT1D player poster celebrating Robbie Owen Thomas as Golden Boot of the Season" loading="lazy">
               <figcaption>Robbie Owen Thomas <span>Golden Boot of the Season</span></figcaption>
             </figure>
             <figure class="gallery-card">
-              <img src="assets/un1ted-aesar-lunggana.png" alt="Un1ted player poster celebrating Aesar Lunggana as Playmaker of the Season" loading="lazy">
+              <img src="assets/un1ted-aesar-lunggana.png" alt="UNIT1D player poster celebrating Aesar Lunggana as Playmaker of the Season" loading="lazy">
               <figcaption>Aesar Lunggana <span>Playmaker of the Season</span></figcaption>
             </figure>
             <figure class="gallery-card">
-              <img src="assets/un1ted-herzian-prayata.png" alt="Un1ted player poster celebrating Herzian Pratyata as Keeper of the Season" loading="lazy">
+              <img src="assets/un1ted-herzian-prayata.png" alt="UNIT1D player poster celebrating Herzian Pratyata as Keeper of the Season" loading="lazy">
               <figcaption>Herzian Pratyata <span>Keeper of the Season</span></figcaption>
             </figure>
             <figure class="gallery-card">
-              <img src="assets/un1ted-eljee-zuri.png" alt="Un1ted player poster featuring Eljee Zuri as Playmaker of the Season" loading="lazy">
+              <img src="assets/un1ted-eljee-zuri.png" alt="UNIT1D player poster featuring Eljee Zuri as Playmaker of the Season" loading="lazy">
               <figcaption>Eljee Zuri <span>Playmaker of the Season</span></figcaption>
             </figure>
           </div>
@@ -1020,9 +1020,7 @@
       }
 
       const savedTheme = localStorage.getItem("civitas-theme");
-      if (savedTheme === "dark" || savedTheme === "light") {
-        setTheme(savedTheme);
-      }
+      setTheme(savedTheme === "light" ? "light" : "dark");
       themeButton.addEventListener("click", () => {
         setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
       });
