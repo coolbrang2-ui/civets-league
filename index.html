@@ -493,6 +493,71 @@
         outline-offset: 3px;
       }
 
+      .transfer-section {
+        margin-bottom: 64px;
+      }
+
+      .transfer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .transfer-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 176px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      .transfer-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 4px;
+        background: linear-gradient(90deg, var(--teal), var(--blue));
+      }
+
+      .transfer-tag {
+        display: inline-flex;
+        min-height: 24px;
+        align-items: center;
+        margin-bottom: 18px;
+        padding: 0 8px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--teal), transparent 90%);
+        color: var(--teal);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .transfer-card h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        letter-spacing: -.025em;
+      }
+
+      .transfer-route {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1.5;
+      }
+
+      .transfer-route span {
+        color: var(--teal);
+        font-size: 16px;
+      }
+
       .club-gallery {
         margin-top: 64px;
       }
@@ -642,8 +707,13 @@
           max-height: 230px;
         }
 
-        .club-grid {
+        .club-grid,
+        .transfer-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .transfer-grid .transfer-card:last-child {
+          grid-column: 1 / -1;
         }
 
         .gallery-grid {
@@ -761,8 +831,17 @@
           max-height: 180px;
         }
 
-        .club-grid {
+        .club-grid,
+        .transfer-grid {
           gap: 11px;
+        }
+
+        .transfer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .transfer-grid .transfer-card:last-child {
+          grid-column: auto;
         }
 
         .club-card {
@@ -814,6 +893,7 @@
           </a>
           <div class="nav-links">
             <a href="#clubs">Clubs</a>
+            <a href="transfers.html">Transfers</a>
             <a href="matches.html">Matches</a>
             <a href="season-stats.html">Season Stats</a>
             <a href="#about">About</a>
@@ -873,7 +953,7 @@
           <article class="club-card">
             <img class="club-profile" src="assets/persihay-crest-hd.png" alt="Persihay team badge">
             <h3>Persihay</h3>
-            <p>11 players</p>
+            <p>13 players</p>
             <a class="club-action" href="players.html?team=persihay">View players <span aria-hidden="true">→</span></a>
           </article>
           <article class="club-card">
